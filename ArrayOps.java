@@ -1,7 +1,8 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        System.out.println(findMissingInt(new int[] { 0, 5, 2, 1, 6, 4 }));
-        System.out.println(secondMaxValue(new int[] { 0, 5, 5, 2, 3, 1, 3 }));
+        System.out.println(findMissingInt(new int[] { 1 }));
+        System.out.println(secondMaxValue(new int[] { 0, 5,  2, 3, 1, 3 }));
+        System.out.println(secondMaxValue(new int[] { 2, 8, 3, 7, 8 }));
         System.out.println(containsTheSameElements(new int[] { 1, 2, 1, 1, 2 }, new int[] { 2, 3, 2, 1 }));
         System.out.println(containsTheSameElements(new int[] { 2, 2, 3, 7, 8, 3, 2 }, new int[] { 8, 2, 7, 7, 3 }));
         System.out.println(containsTheSameElements(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
@@ -19,27 +20,25 @@ public class ArrayOps {
     // array.length.
     public static int findMissingInt(int[] array) {
         int len = array.length; // array length.
-        int sum = array[0]; // sum of arrays in array.
-        int maxVal = 0; // max value of array.
-        for (int i = 1; i < len; i++) {
+        int sum = 0; // sum of arrays in array.
+        for (int i = 0; i < len; i++) {
             sum += array[i]; // summing the arrays in array.
-            maxVal = Math.max(maxVal, array[i]); // finding the max value in array.
         }
         // return the sub of the sum of all numbers up to maxVal(using a formula) and
         // sum.
-        return ((maxVal * (maxVal + 1)) / 2) - sum;
+        return ((len * (len + 1)) / 2) - sum;
     }
 
     // secondMaxValue - returns the second maximum value in array.
     public static int secondMaxValue(int[] array) {
         int len = array.length; // array's length.
         int realMax = array[0]; // max value in array.
-        int secondaryMax = 0; // second max value in array.
+        int secondaryMax = array[0]; // second max value in array.
         for (int i = 1; i < len; i++) { // go through the array's variables.
             if (realMax < array[i]) {
                 secondaryMax = realMax; // save the second max value before changing the max value.
-                realMax = Math.max(array[i], realMax);
-            } else if (secondaryMax < array[i] && array[i] != realMax) {
+                realMax = array[i];
+            } else if (secondaryMax < array[i]) {
                 // search if there are any umbers between the max value and the second max
                 // value.
                 secondaryMax = array[i];
